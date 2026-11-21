@@ -15,7 +15,11 @@ export function Header({ menuOpen, onToggleMenu, onContact }) {
   return (
     <header className={`header ${scrolled ? 'header--scrolled' : ''}`}>
       <a href="#top" className="header__logo" aria-label={`${company.name} — back to top`}>
-        <img src={images.logo} alt="" />
+        <img src={images.logoMark} alt="" />
+        <span className="header__wordmark" aria-hidden="true">
+          <span className="header__name">4D-Scale</span>
+          <span className="header__ltd">Limited</span>
+        </span>
       </a>
       <Btn className="header__cta" onClick={onContact}>Get in touch</Btn>
       <button

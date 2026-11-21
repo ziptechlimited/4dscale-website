@@ -105,7 +105,11 @@ a:hover .roll__text + .roll__text, button:hover .roll__text + .roll__text, .menu
   transition: background 0.5s, backdrop-filter 0.5s;
 }
 .header--scrolled { background: rgba(11, 11, 11, 0.55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-.header__logo img { height: 2.6rem; width: auto; mix-blend-mode: lighten; }
+.header__logo { display: inline-flex; align-items: center; gap: 0.75rem; justify-self: start; }
+.header__logo img { height: 2.6rem; width: auto; }
+.header__wordmark { display: grid; gap: 0.2rem; font-family: var(--display); text-transform: uppercase; line-height: 0.95; }
+.header__name { font-weight: 500; font-size: 1.2rem; letter-spacing: -0.02em; }
+.header__ltd { font-weight: 300; font-size: 0.6rem; letter-spacing: 0.42em; color: rgba(241, 241, 241, 0.75); }
 .header__cta { justify-self: center; }
 .burger { justify-self: end; width: 2.75rem; height: 2.75rem; position: relative; }
 .burger span { position: absolute; left: 0.55rem; right: 0.55rem; height: 1px; background: var(--paper); transition: transform 0.5s var(--ease); }
@@ -398,6 +402,8 @@ a:hover .roll__text + .roll__text, button:hover .roll__text + .roll__text, .menu
   .header { grid-template-columns: 1fr auto auto; gap: 0.5rem; }
   .header__cta { padding: 0.75rem 1rem; }
   .header__logo img { height: 2.1rem; }
+  .header__logo { gap: 0.6rem; }
+  .header__name { font-size: 1.05rem; }
   .menu__item { grid-template-columns: 5.5rem 1fr; }
   .modal__body { grid-template-columns: 1fr; }
 

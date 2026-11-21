@@ -29,7 +29,7 @@ export const chapters = [
 
 export const images = {
   hero: img('hero'),
-  logo: img('logo-dark'),
+  logoMark: '/assets/img/logo-mark.png',
   logoFull: img('logo-dark-full'),
   coverAbout: img('cover-about'),
   about: img('about'),
