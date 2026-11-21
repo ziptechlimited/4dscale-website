@@ -31,7 +31,7 @@ const projectsIndex = {
   description:
     'Projects by 4D-Scale Limited: Veritas University auditorium, an NNPC station upgrade in Potiskum, private residences and bungalows, plus our directors’ institutional work.',
   image: '/assets/img/work-veritas-built.jpg',
-  imageAlt: 'The finished Veritas University auditorium',
+  imageAlt: 'Veritas University auditorium with acoustic wall cladding installed',
   crumbs: [{ name: 'Projects', path: '/projects' }],
 };
 

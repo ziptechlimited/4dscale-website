@@ -107,7 +107,7 @@ export const projectPages = [
     description:
       'Sound-proofing and acoustic control for the Veritas University auditorium in Bwari, Abuja: mineral-fibre ceiling and timber-finish acoustic wall cladding, 2024.',
     image: img('work-veritas-built'),
-    imageAlt: 'The finished Veritas University auditorium with mineral-fibre ceiling and acoustic wall cladding',
+    imageAlt: 'Veritas University auditorium with its mineral-fibre ceiling and acoustic wall cladding installed',
     location: 'Bwari, Abuja (FCT)',
     year: '2024',
     client: 'University',

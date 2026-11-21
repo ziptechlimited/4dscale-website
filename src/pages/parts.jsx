@@ -41,7 +41,7 @@ export function ProjectCard({ slug, i = 0 }) {
       <a href={`/projects/${p.slug}`} className="pcard__link">
         <div className="pcard__img"><img src={p.image} alt={p.imageAlt} loading="lazy" /></div>
         <p className="label pcard__meta">{p.scope}{p.year ? ` · ${p.year}` : ''}</p>
-        <h3 className="pcard__title">{p.name} <span aria-hidden="true">↗</span></h3>
+        <h3 className="pcard__title">{p.name}{'\u00a0'}<span aria-hidden="true">↗</span></h3>
         <p className="body muted">{p.location}</p>
       </a>
     </Reveal>

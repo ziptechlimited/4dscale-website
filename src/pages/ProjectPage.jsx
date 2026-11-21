@@ -8,6 +8,7 @@ export default function ProjectPage({ route, onContact }) {
   const p = projectBySlug[route.slug];
   const service = serviceBySlug[p.service];
   const others = projectPages.filter((o) => o.slug !== p.slug).slice(0, 3);
+  const gallery = p.gallery.filter((src) => src !== p.image); // hero photo is already shown above
   const facts = [
     ['Location', p.location],
     ['Client', p.client],
@@ -33,11 +34,11 @@ export default function ProjectPage({ route, onContact }) {
 
         {p.story && <Case c={p.story} kicker="Stage by stage" link={false} />}
 
-        {p.gallery.length > 0 && (
+        {gallery.length > 0 && (
           <section className="gallery">
             <Reveal as="h2" className="label thin">{p.story ? 'More from the project' : 'The project'}</Reveal>
-            <div className={`gallery__grid gallery__grid--${Math.min(p.gallery.length, 4)}`}>
-              {p.gallery.map((src, i) => (
+            <div className={`gallery__grid gallery__grid--${Math.min(gallery.length, 4)}`}>
+              {gallery.map((src, i) => (
                 <figure key={src} className="gallery__img">
                   <img src={src} alt={`${p.name}, ${p.location} — photo ${i + 1}`} loading="lazy" />
                 </figure>
