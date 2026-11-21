@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useInView, useScrollFrame, clamp, prefersReducedMotion } from '../hooks.js';
-import { company } from '../data/content.js';
+import { company, whatsappUrl } from '../data/content.js';
 
 /** Gold text with a light sweep on hover and once when it scrolls in. */
 export function Shine({ as: Tag = 'span', className = '', children }) {
@@ -45,7 +45,7 @@ const Corners = () => (
   </svg>
 );
 
-export function Btn({ children, onClick, href, type = 'button', className = '' }) {
+export function Btn({ children, onClick, href, type = 'button', className = '', ...rest }) {
   const inner = (
     <>
       <Corners />
@@ -53,9 +53,9 @@ export function Btn({ children, onClick, href, type = 'button', className = '' }
     </>
   );
   return href ? (
-    <a className={`btn label ${className}`} href={href}>{inner}</a>
+    <a className={`btn label ${className}`} href={href} {...rest}>{inner}</a>
   ) : (
-    <button type={type} className={`btn label ${className}`} onClick={onClick}>{inner}</button>
+    <button type={type} className={`btn label ${className}`} onClick={onClick} {...rest}>{inner}</button>
   );
 }
 
@@ -96,8 +96,14 @@ export function ContactBlock({ className = '' }) {
         ))}
       </div>
       <div className="contact-block__item">
+        <p className="body muted">WhatsApp</p>
+        <a className="body strong" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><Roll>{company.whatsapp.display}</Roll></a>
+      </div>
+      <div className="contact-block__item">
         <p className="body muted">Mail</p>
-        <a className="body strong" href={`mailto:${company.email}`}><Roll>{company.email}</Roll></a>
+        {company.emails.map((m) => (
+          <a key={m} className="body strong" href={`mailto:${m}`}><Roll>{m}</Roll></a>
+        ))}
       </div>
       <div className="contact-block__item">
         <p className="body muted">Offices</p>

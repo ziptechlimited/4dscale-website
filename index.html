@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>4D-Scale Limited — Architects, Project Managers, Contractors</title>
     <meta name="description" content="4D-Scale Limited is an Abuja-based firm of architects, project managers and contractors delivering building, civil, electrical and mechanical works across Nigeria." />
+    <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" content="#0b0b0b" />
+    <script>
+      // Apply a saved theme before first paint (no flash). No saved choice = follow the device.
+      try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+      if (matchMedia('(prefers-color-scheme: light)').matches && document.documentElement.dataset.theme !== 'dark' || document.documentElement.dataset.theme === 'light') document.querySelector('meta[name="theme-color"]').content = '#f3efe7';
+    </script>
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

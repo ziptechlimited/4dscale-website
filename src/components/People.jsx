@@ -1,5 +1,6 @@
 import { images, leaders, staff } from '../data/content.js';
 import ChapterCover from './ChapterCover.jsx';
+import Credentials from './Credentials.jsx';
 import { ParallaxImg, Reveal, Shine, Title } from './ui.jsx';
 
 function Leader({ l, i }) {
@@ -70,6 +71,8 @@ export default function People() {
           </div>
           <ParallaxImg className="onsite__b" src={images.team2} alt="4D-Scale team member in branded hard hat on site" />
         </section>
+
+        <Credentials />
       </div>
     </section>
   );

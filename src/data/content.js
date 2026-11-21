@@ -7,13 +7,14 @@ export const company = {
   rc: '1702477',
   incorporated: '26 August 2020',
   roles: ['Architects', 'Project Managers', 'Contractors'],
-  email: '4d.scaleltd@gmail.com',
+  emails: ['info@4dscalelimited.com', '4d.scaleltd@gmail.com'],
+  whatsapp: { display: '+234 806 794 7558', number: '2348067947558' },
   phones: [
     { display: '+234 806 794 7558', tel: '+2348067947558' },
     { display: '+234 802 407 6124', tel: '+2348024076124' },
   ],
   offices: [
-    { area: 'Karu', address: '9, Sina Balogun Close, Karu Site, FCT' },
+    { area: 'Karu', hq: true, address: '9, Sina Balogun Close, Karu Site, FCT' },
     { area: 'Nyanya', address: 'No 2, Cascurim Road, Federal Housing, Nyanya, FCT' },
     { area: 'Mbora', address: '27, G2 Street, Citec, Mbora, FCT' },
   ],
@@ -24,12 +25,14 @@ export const chapters = [
   { id: 'works', num: 'II', label: 'Our works' },
   { id: 'record', num: 'III', label: 'Track record' },
   { id: 'people', num: 'IV', label: 'People' },
-  { id: 'contact', num: 'V', label: 'Contact' },
+  // Menu link skips the cover and lands on the contact details.
+  { id: 'contact', num: 'V', label: 'Contact', target: 'get-in-touch' },
 ];
 
 export const images = {
   hero: img('hero'),
   logoMark: '/assets/img/logo-mark.png',
+  logoMarkLight: '/assets/img/logo-mark-light.png',
   logoFull: img('logo-dark-full'),
   coverAbout: img('cover-about'),
   about: img('about'),
@@ -53,6 +56,12 @@ export const about = {
   ],
   clients: ['Individuals', 'Communities', 'Institutions', 'Organisations', 'Corporate bodies', 'Government'],
 };
+
+export const whatsappUrl = (text = "Hello 4D-Scale, I'd like to talk about a project.") =>
+  `https://wa.me/${company.whatsapp.number}?text=${encodeURIComponent(text)}`;
+
+export const mapUrl = (address) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${address}, Abuja, Nigeria`)}`;
 
 // From the 2025 projects catalogue.
 export const services = [

@@ -55,4 +55,40 @@ export function useOverlay(open, onClose) {
   }, [open, onClose]);
 }
 
+const THEME_KEY = 'theme';
+const lightQuery = () => window.matchMedia('(prefers-color-scheme: light)');
+
+/**
+ * Colour theme: 'auto' follows the device; 'light' / 'dark' force a theme via
+ * <html data-theme>. index.html applies a saved choice before first paint.
+ */
+export function useTheme() {
+  const [mode, setMode] = useState(() => {
+    try { return localStorage.getItem(THEME_KEY) || 'auto'; } catch { return 'auto'; }
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (mode === 'auto') root.removeAttribute('data-theme');
+    else root.dataset.theme = mode;
+    try {
+      if (mode === 'auto') localStorage.removeItem(THEME_KEY);
+      else localStorage.setItem(THEME_KEY, mode);
+    } catch { /* storage unavailable: theme still applies for this visit */ }
+
+    // Keep the browser UI colour in step with the page.
+    const mq = lightQuery();
+    const sync = () => {
+      const light = mode === 'light' || (mode === 'auto' && mq.matches);
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', light ? '#f3efe7' : '#0b0b0b');
+    };
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, [mode]);
+
+  const cycle = () => setMode((m) => (m === 'auto' ? 'light' : m === 'light' ? 'dark' : 'auto'));
+  return [mode, cycle];
+}
+
 export const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v));
