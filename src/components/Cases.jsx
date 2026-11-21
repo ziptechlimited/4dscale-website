@@ -25,7 +25,8 @@ function Phase({ c, p, k, setRef }) {
   );
 }
 
-function Case({ c, i }) {
+/** A project told phase by phase, with a sticky stage list. Used on the home page and project pages. */
+export function Case({ c, kicker, link = true }) {
   const [active, setActive] = useState(0);
   const phaseEls = useRef([]);
 
@@ -44,11 +45,12 @@ function Case({ c, i }) {
       <aside className="case__aside">
         <Reveal>
           <p className="label case__kicker">
-            Project story {pad(i + 1)} / {pad(cases.length)} <span className="muted">· {c.scope}</span>
+            {kicker} <span className="muted">· {c.scope}</span>
           </p>
           <h3 className="h2 thin case__title">{c.project}</h3>
           <p className="body muted">{c.location}</p>
           <p className="body case__summary">{c.summary}</p>
+          {link && <a className="btn-link label case__link" href={`/projects/${c.slug}`}>The full project ↗</a>}
         </Reveal>
         <ol className="case__nav" aria-label={`${c.project} — stages`}>
           {c.phases.map((p, k) => (
@@ -80,7 +82,9 @@ export default function Cases() {
           the building we handed over.
         </Reveal>
       </div>
-      {cases.map((c, i) => <Case key={c.id} c={c} i={i} />)}
+      {cases.map((c, i) => (
+        <Case key={c.id} c={c} kicker={`Project story ${pad(i + 1)} / ${pad(cases.length)}`} />
+      ))}
     </section>
   );
 }

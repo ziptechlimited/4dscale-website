@@ -17,7 +17,7 @@ function WorkItem({ w, index }) {
       <ParallaxImg src={w.src} alt={`${w.project}, ${w.location}`} />
       <figcaption className="work__cap">
         <span className="label">{w.note ? `${w.note} · ` : ''}{w.year}</span>
-        <span className="body">{w.project}</span>
+        <a className="body work__link" href={`/projects/${w.slug}`}>{w.project}</a>
         <span className="body muted">{w.location} · Design &amp; Build</span>
       </figcaption>
       {w.text && (
@@ -44,6 +44,7 @@ export default function Works({ onContact }) {
             {works.map((w, i) => <WorkItem key={w.src} w={w} index={i} />)}
           </div>
           <div className="works__more">
+            <a className="btn-link label" href="/projects">All projects ↗</a>
             <button type="button" className="btn-link label" onClick={onContact}>Discuss your project</button>
             <p className="label thin"><span className="works__dash" /> + 4 director-led projects in chapter III</p>
           </div>

@@ -75,13 +75,16 @@ export function ParallaxImg({ src, alt, className = '', strength = 12 }) {
   );
 }
 
-/** Chapter heading lines: thin rows plus a gold "shine" word. */
+/** Section heading (an <h2>): thin rows plus a gold "shine" word, one per line. */
 export function Title({ thin = [], shine, after = [], size = 'h1', className = '' }) {
+  // Spaces between the lines keep the heading text readable to search engines and screen readers.
+  const line = (t) => [<span key={t} className={`${size} thin`}>{t}</span>, ' '];
   return (
-    <Reveal className={`title ${className}`}>
-      {thin.map((t) => <div key={t} className={`${size} thin`}>{t}</div>)}
-      {shine && <Shine as="div" className={`${size} book`}>{shine}</Shine>}
-      {after.map((t) => <div key={t} className={`${size} thin`}>{t}</div>)}
+    <Reveal as="h2" className={`title ${className}`}>
+      {thin.map(line)}
+      {shine && <Shine className={`${size} book`}>{shine}</Shine>}
+      {after.length > 0 && ' '}
+      {after.map(line)}
     </Reveal>
   );
 }

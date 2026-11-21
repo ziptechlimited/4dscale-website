@@ -25,6 +25,7 @@ export default function Hero() {
       <div className="hero__content">
         <p className="label">{company.name}</p>
         <h1 className="hero__title">
+          <span className="sr-only">{company.name}: architects, project managers and building contractors in Abuja, Nigeria. </span>
           <span className="thin">Designed in three dimensions,</span>{' '}
           <span className="shine shine--play book">delivered in the fourth.</span>
         </h1>

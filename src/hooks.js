@@ -60,23 +60,22 @@ const lightQuery = () => window.matchMedia('(prefers-color-scheme: light)');
 
 /**
  * Colour theme: 'auto' follows the device; 'light' / 'dark' force a theme via
- * <html data-theme>. index.html applies a saved choice before first paint.
+ * <html data-theme>. index.html applies a saved choice before first paint, so
+ * this hook starts at 'auto' (matching the prerendered HTML) and reads the saved
+ * choice after mount.
  */
 export function useTheme() {
-  const [mode, setMode] = useState(() => {
-    try { return localStorage.getItem(THEME_KEY) || 'auto'; } catch { return 'auto'; }
-  });
+  const [mode, setMode] = useState('auto');
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (mode === 'auto') root.removeAttribute('data-theme');
-    else root.dataset.theme = mode;
     try {
-      if (mode === 'auto') localStorage.removeItem(THEME_KEY);
-      else localStorage.setItem(THEME_KEY, mode);
-    } catch { /* storage unavailable: theme still applies for this visit */ }
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved === 'light' || saved === 'dark') setMode(saved);
+    } catch { /* storage unavailable */ }
+  }, []);
 
-    // Keep the browser UI colour in step with the page.
+  // Keep the browser UI colour in step with the page.
+  useEffect(() => {
     const mq = lightQuery();
     const sync = () => {
       const light = mode === 'light' || (mode === 'auto' && mq.matches);
@@ -87,7 +86,17 @@ export function useTheme() {
     return () => mq.removeEventListener('change', sync);
   }, [mode]);
 
-  const cycle = () => setMode((m) => (m === 'auto' ? 'light' : m === 'light' ? 'dark' : 'auto'));
+  const cycle = () => {
+    const next = mode === 'auto' ? 'light' : mode === 'light' ? 'dark' : 'auto';
+    const root = document.documentElement;
+    if (next === 'auto') root.removeAttribute('data-theme');
+    else root.dataset.theme = next;
+    try {
+      if (next === 'auto') localStorage.removeItem(THEME_KEY);
+      else localStorage.setItem(THEME_KEY, next);
+    } catch { /* storage unavailable: theme still applies for this visit */ }
+    setMode(next);
+  };
   return [mode, cycle];
 }
 

@@ -96,16 +96,19 @@ export const partners = [
 ];
 
 const YELWA = {
+  slug: 'yelwa-shandam-bungalows',
   project: '3-bedroom & 2-bedroom bungalows',
   location: 'Yelwa Shandam, Plateau State',
   year: '2020',
 };
 const VERITAS = {
+  slug: 'veritas-university-auditorium',
   project: 'Veritas University auditorium — acoustic control, mineral-fibre ceiling & wall cladding',
   location: 'Bwari, FCT',
   year: '2024',
 };
 const UKE = {
+  slug: 'uke-farm-nasarawa',
   project: 'Farm construction & management',
   location: 'Uke, Nasarawa State',
   year: '2024',
@@ -128,6 +131,7 @@ export const works = [
 export const cases = [
   {
     id: 'residence',
+    slug: 'private-residence-design-and-build',
     project: 'Private residential development',
     location: 'Nigeria',
     scope: 'Design & Build',
@@ -158,6 +162,7 @@ export const cases = [
   },
   {
     id: 'veritas',
+    slug: 'veritas-university-auditorium',
     inWorksGrid: true, // already counted in the works grid
     project: 'Sound-proofing & acoustic control, Veritas University hall',
     location: 'Bwari, Abuja (FCT)',
@@ -184,6 +189,7 @@ export const cases = [
   },
   {
     id: 'nnpc',
+    slug: 'nnpc-service-station-potiskum',
     project: 'Upgrade of an NNPC service station',
     location: 'Potiskum, Yobe State',
     scope: 'Project management',

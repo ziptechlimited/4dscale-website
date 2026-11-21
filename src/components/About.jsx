@@ -1,4 +1,5 @@
-import { about, company, images, mottos, partners, services } from '../data/content.js';
+import { about, company, images, mottos, partners } from '../data/content.js';
+import { serviceList } from '../data/pages.js';
 import ChapterCover from './ChapterCover.jsx';
 import { ParallaxImg, Reveal, Shine, Title } from './ui.jsx';
 
@@ -31,13 +32,16 @@ function Services() {
         <Title thin={['One firm,', 'eight']} shine="disciplines" />
       </div>
       <ol className="services__list">
-        {services.map((s, i) => (
-          <Reveal as="li" key={s} className="services__item" delay={(i % 4) * 70}>
+        {serviceList.map((s, i) => (
+          <Reveal as="li" key={s.name} className="services__item" delay={(i % 4) * 70}>
             <span className="label thin">{String(i + 1).padStart(2, '0')}</span>
-            <span className="h2 thin">{s}</span>
+            {s.page
+              ? <a className="h2 thin services__link" href={`/services/${s.page}`}>{s.name} <span aria-hidden="true">↗</span></a>
+              : <span className="h2 thin">{s.name}</span>}
           </Reveal>
         ))}
       </ol>
+      <a className="btn-link label services__all" href="/services">All services ↗</a>
       <Reveal as="blockquote" className="services__motto">&ldquo;{mottos.mind}&rdquo;</Reveal>
     </section>
   );

@@ -35,7 +35,7 @@ function ThemeToggle() {
   );
 }
 
-export function Header({ menuOpen, onToggleMenu, onContact }) {
+export function Header({ menuOpen, onToggleMenu, onContact, home = true }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -46,7 +46,7 @@ export function Header({ menuOpen, onToggleMenu, onContact }) {
 
   return (
     <header className={`header ${scrolled || menuOpen ? 'header--solid' : ''}`}>
-      <a href="#top" className="header__logo" aria-label={`${company.name} — back to top`}>
+      <a href={home ? '#top' : '/'} className="header__logo" aria-label={home ? `${company.name} — back to top` : `${company.name} — home`}>
         <img className="header__mark--on-dark" src={images.logoMark} alt="" />
         <img className="header__mark--on-light" src={images.logoMarkLight} alt="" />
         <span className="header__wordmark" aria-hidden="true">
@@ -71,7 +71,12 @@ export function Header({ menuOpen, onToggleMenu, onContact }) {
   );
 }
 
-export function Menu({ open, onClose }) {
+const pageLinks = [
+  { href: '/services', label: 'Services' },
+  { href: '/projects', label: 'Projects' },
+];
+
+export function Menu({ open, onClose, home = true }) {
   useOverlay(open, onClose);
   return (
     <div className={`overlay menu ${open ? 'overlay--open' : ''}`} aria-hidden={!open}>
@@ -80,10 +85,17 @@ export function Menu({ open, onClose }) {
         <ul className="menu__nav">
           {chapters.map((c) => (
             <li key={c.id}>
-              <a href={`#${c.target ?? c.id}`} className="menu__item" onClick={onClose} tabIndex={open ? 0 : -1}>
+              <a href={`${home ? '' : '/'}#${c.target ?? c.id}`} className="menu__item" onClick={onClose} tabIndex={open ? 0 : -1}>
                 <span className="label">chapter {c.num}</span>
                 <span className="h2 thin"><Roll>{c.label}</Roll></span>
               </a>
+            </li>
+          ))}
+        </ul>
+        <ul className="menu__pages">
+          {pageLinks.map((l) => (
+            <li key={l.href}>
+              <a href={l.href} className="label" tabIndex={open ? 0 : -1}><Roll>{l.label}</Roll> <span aria-hidden="true">↗</span></a>
             </li>
           ))}
         </ul>
