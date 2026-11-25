@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>4D-Scale Email Signature</title>
+<style>
+  :root { --bg: #f3efe7; --fg: #15130f; --muted: #6b665c; --gold: #8a6414; --card: #fff; --line: #ddd5c6; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #111; --fg: #f1f1f1; --muted: #a8a296; --gold: #d4a849; --card: #1b1b1b; --line: #333; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  h2 { font-size: 16px; margin: 32px 0 10px; }
+  p.lede { color: var(--muted); margin: 0 0 20px; }
+  .preview { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 24px; overflow-x: auto; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 0; align-items: center; }
+  button { font: inherit; font-weight: 600; border: 0; border-radius: 8px; padding: 10px 16px; cursor: pointer; background: var(--gold); color: #fff; }
+  button.alt { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+  .ok { color: #188038; font-weight: 600; }
+  .warn { background: #fff4d6; color: #5c4400; border-radius: 8px; padding: 10px 14px; margin-top: 14px; display: none; }
+  pre { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px; white-space: pre-wrap; font-size: 13px; margin: 0; }
+  ol { padding-left: 20px; } li { margin: 4px 0; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; margin-top: 10px; }
+  summary { cursor: pointer; font-weight: 600; }
+</style>
+</head>
+<body>
+<main>
+  <h1>4D-Scale email signature</h1>
+  <p class="lede">For info@4dscalelimited.com. Click “Copy signature”, then paste it into your email app’s signature settings.</p>
+
+  <div class="preview" id="sig"><!-- SIGNATURE START -->
+<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;color:#15130f;">
+  <tr>
+    <td valign="top" style="padding:0 16px 0 0;vertical-align:top;">
+      <a href="https://www.4dscalelimited.com/" style="text-decoration:none;"><img src="https://www.4dscalelimited.com/assets/img/email/signature-logo.png" width="88" height="88" alt="4D-Scale Limited" style="display:block;width:88px;height:88px;border:0;border-radius:14px;" /></a>
+    </td>
+    <td valign="top" style="padding:0 0 0 16px;vertical-align:top;border-left:2px solid #b8892a;">
+      <table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;">
+        <tr><td style="font-size:16px;line-height:20px;font-weight:bold;letter-spacing:0.5px;color:#15130f;">4D-SCALE LIMITED</td></tr>
+        <tr><td style="font-size:12px;line-height:18px;color:#8a6414;padding:0 0 8px 0;">Architects &middot; Project Managers &middot; Contractors</td></tr>
+        <tr><td style="font-size:12px;line-height:19px;color:#15130f;">
+          <span style="color:#8a6414;font-weight:bold;">T</span>&nbsp;&nbsp;<a href="tel:+2348067947558" style="color:#15130f;text-decoration:none;">+234 806 794 7558</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="tel:+2348024076124" style="color:#15130f;text-decoration:none;">+234 802 407 6124</a>
+        </td></tr>
+        <tr><td style="font-size:12px;line-height:19px;color:#15130f;">
+          <span style="color:#8a6414;font-weight:bold;">WA</span>&nbsp;&nbsp;<a href="https://wa.me/2348067947558" style="color:#15130f;text-decoration:none;">WhatsApp: +234 806 794 7558</a>
+        </td></tr>
+        <tr><td style="font-size:12px;line-height:19px;color:#15130f;">
+          <span style="color:#8a6414;font-weight:bold;">E</span>&nbsp;&nbsp;<a href="mailto:info@4dscalelimited.com" style="color:#15130f;text-decoration:none;">info@4dscalelimited.com</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://www.4dscalelimited.com/" style="color:#8a6414;text-decoration:none;font-weight:bold;">www.4dscalelimited.com</a>
+        </td></tr>
+        <tr><td style="font-size:12px;line-height:19px;color:#15130f;">
+          <span style="color:#8a6414;font-weight:bold;">A</span>&nbsp;&nbsp;9, Sina Balogun Close, Karu Site, FCT, Abuja
+        </td></tr>
+        <tr><td style="font-size:11px;line-height:16px;color:#8a6414;font-style:italic;padding:8px 0 0 0;">Measuring beyond your expectation. &nbsp;<span style="color:#9a958b;font-style:normal;">RC 1702477</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- SIGNATURE END --></div>
+
+  <div class="row">
+    <button type="button" id="copyRich">Copy signature</button>
+    <button type="button" class="alt" id="copyText">Copy plain-text version</button>
+    <button type="button" class="alt" id="copyHtml">Copy HTML code</button>
+    <span id="status" aria-live="polite"></span>
+  </div>
+  <div class="warn" id="logoWarn">The logo isn’t loading from www.4dscalelimited.com yet. Deploy the website first (the logo file is <code>public/assets/img/email/signature-logo.png</code>), then reload this page before copying.</div>
+
+  <h2>Plain-text version (for phone apps)</h2>
+<pre id="plain">4D-Scale Limited
+Architects · Project Managers · Contractors
+T: +234 806 794 7558 | +234 802 407 6124
+WhatsApp: +234 806 794 7558
+E: info@4dscalelimited.com | www.4dscalelimited.com
+A: 9, Sina Balogun Close, Karu Site, FCT, Abuja
+Measuring beyond your expectation.</pre>
+
+  <h2>Where to paste it</h2>
+  <details open><summary>Zoho Mail (web)</summary>
+    <ol>
+      <li>Click <b>Copy signature</b> above.</li>
+      <li>In Zoho Mail, open <b>Settings</b> (gear icon) → <b>Signature</b> → <b>Add signature</b>.</li>
+      <li>Name it “4D-Scale”, click in the editor and paste (<b>Cmd + V</b> / <b>Ctrl + V</b>).</li>
+      <li>Link it to <b>info@4dscalelimited.com</b>, set it to appear on new emails and replies, and <b>Save</b>.</li>
+    </ol>
+  </details>
+  <details><summary>Gmail (web), if you send as info@ from Gmail</summary>
+    <ol>
+      <li>Gmail → gear icon → <b>See all settings</b> → <b>General</b> → <b>Signature</b> → <b>Create new</b>.</li>
+      <li>Paste into the box, choose it under “Signature defaults” for info@4dscalelimited.com, then <b>Save Changes</b> at the bottom.</li>
+    </ol>
+  </details>
+  <details><summary>Apple Mail (Mac)</summary>
+    <ol>
+      <li>Mail → <b>Settings</b> → <b>Signatures</b> → choose the info@ account → <b>+</b>.</li>
+      <li>Untick “Always match my default message font”, paste the signature, close the window.</li>
+    </ol>
+  </details>
+  <details><summary>Phone apps (Gmail app, Zoho Mail app)</summary>
+    <p>Mobile signature settings only accept plain text. Click <b>Copy plain-text version</b>, send it to your phone (e.g. WhatsApp it to yourself), then paste it into the app’s signature setting: Gmail app → Settings → your info@ account → <b>Mobile signature</b>.</p>
+  </details>
+</main>
+<script>
+  const sig = document.getElementById('sig');
+  const status = document.getElementById('status');
+  const say = (msg) => { status.innerHTML = `<span class="ok">${msg}</span>`; setTimeout(() => (status.textContent = ''), 3000); };
+  const html = () => sig.innerHTML.split('<!-- SIGNATURE START -->').pop().split('<!-- SIGNATURE END -->')[0].trim();
+  const plain = () => document.getElementById('plain').textContent;
+
+  async function copyRich() {
+    try {
+      await navigator.clipboard.write([new ClipboardItem({
+        'text/html': new Blob([html()], { type: 'text/html' }),
+        'text/plain': new Blob([plain()], { type: 'text/plain' }),
+      })]);
+    } catch {
+      // Fallback for browsers without ClipboardItem: copy the rendered selection.
+      const range = document.createRange(); range.selectNodeContents(sig);
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      document.execCommand('copy'); sel.removeAllRanges();
+    }
+    say('Signature copied ✓');
+  }
+  async function copyString(text, msg) {
+    try { await navigator.clipboard.writeText(text); }
+    catch { const t = document.createElement('textarea'); t.value = text; document.body.append(t); t.select(); document.execCommand('copy'); t.remove(); }
+    say(msg);
+  }
+  document.getElementById('copyRich').onclick = copyRich;
+  document.getElementById('copyText').onclick = () => copyString(plain(), 'Plain text copied ✓');
+  document.getElementById('copyHtml').onclick = () => copyString(html(), 'HTML copied ✓');
+
+  // Warn if the logo isn't reachable on the live site yet.
+  const img = sig.querySelector('img');
+  const check = () => { if (img.complete && img.naturalWidth === 0) document.getElementById('logoWarn').style.display = 'block'; };
+  img.addEventListener('error', check); check();
+</script>
+</body>
+</html>
